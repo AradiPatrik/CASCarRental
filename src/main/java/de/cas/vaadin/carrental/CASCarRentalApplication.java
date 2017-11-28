@@ -8,6 +8,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 
 import de.cas.vaadin.carrental.presenter.LoginPresenter;
 import de.cas.vaadin.carrental.presenter.VehiclesPresenter;
@@ -28,9 +29,12 @@ import de.cas.vaadin.carrental.view.vehicles.VehiclesViewImpl;
 @Theme("mytheme")
 @Title("CAS Car Rental Application")
 public class CASCarRentalApplication extends UI {
-
+	
+	private static UI instance;
+	
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+    	instance = this;
     	final LoginView loginView = new LoginViewImpl();
     	final LoginPresenter loginPresenter = new LoginPresenter(loginView);
     	final VehiclesView vehiclesView = new VehiclesViewImpl();
@@ -39,7 +43,11 @@ public class CASCarRentalApplication extends UI {
     	Navigation.addView(Routes.LOGIN, loginView);
     	Navigation.addView(Routes.VEHICLES, vehiclesView);
     }
-
+    
+    public static UI getMainUI() {
+    	return instance;
+    }
+    
     @WebServlet(value = {"/carrental/*", "/VAADIN/*"}, name = "CASCarRentalApplicationServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = CASCarRentalApplication.class, productionMode = false)
     public static class CASCarRentalApplicationServlet extends VaadinServlet {

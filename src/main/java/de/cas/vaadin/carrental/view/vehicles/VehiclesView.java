@@ -21,6 +21,7 @@ public interface VehiclesView extends View {
 	void attachVehiclesData(Container container);
 	void setColumnHeader(String propertyName, String headerName);
 	void setVisibleColumns(Object... propertyName);
+	void displayModalDialog();
 	Object getSelectedRows();
 	
 }
