@@ -3,11 +3,11 @@ package de.cas.vaadin.carrental.model;
 public class Vehicle {
 	private String manufacturer;
 	private String type;
-	private double dailyPrice;
+	private Euro dailyPrice;
 	private VehicleState vehicleState;
 	private String numberPlate;
 	
-	public Vehicle(String manufacturer, String type, double dailyPrice, VehicleState vehicleState, String numberPlate) {
+	public Vehicle(String manufacturer, String type, Euro dailyPrice, VehicleState vehicleState, String numberPlate) {
 		super();
 		this.manufacturer = manufacturer;
 		this.type = type;
@@ -28,10 +28,10 @@ public class Vehicle {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public double getDailyPrice() {
+	public Euro getDailyPrice() {
 		return dailyPrice;
 	}
-	public void setDailyPrice(double dailyPrice) {
+	public void setDailyPrice(Euro dailyPrice) {
 		this.dailyPrice = dailyPrice;
 	}
 	public VehicleState getVehicleState() {
@@ -45,6 +45,21 @@ public class Vehicle {
 	}
 	public void setNumberPlate(String numberPlate) {
 		this.numberPlate = numberPlate;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		} else {
+			return this.numberPlate.equals(((Vehicle)other).numberPlate);
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Vehicle [manufacturer=" + manufacturer + ", type=" + type + ", dailyPrice=" + dailyPrice
+				+ ", vehicleState=" + vehicleState + ", numberPlate=" + numberPlate + "]";
 	}
 	
 }

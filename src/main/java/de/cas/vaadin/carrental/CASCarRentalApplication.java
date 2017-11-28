@@ -10,6 +10,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
 
 import de.cas.vaadin.carrental.presenter.LoginPresenter;
+import de.cas.vaadin.carrental.presenter.VehiclesPresenter;
 import de.cas.vaadin.carrental.service.Navigation;
 import de.cas.vaadin.carrental.service.Routes;
 import de.cas.vaadin.carrental.view.login.LoginView;
@@ -33,6 +34,7 @@ public class CASCarRentalApplication extends UI {
     	final LoginView loginView = new LoginViewImpl();
     	final LoginPresenter loginPresenter = new LoginPresenter(loginView);
     	final VehiclesView vehiclesView = new VehiclesViewImpl();
+    	final VehiclesPresenter vehiclesPresenter = new VehiclesPresenter(vehiclesView);
     	Navigation.init(this);
     	Navigation.addView(Routes.LOGIN, loginView);
     	Navigation.addView(Routes.VEHICLES, vehiclesView);

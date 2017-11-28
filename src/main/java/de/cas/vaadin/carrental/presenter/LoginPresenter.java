@@ -2,6 +2,8 @@ package de.cas.vaadin.carrental.presenter;
 
 import com.vaadin.ui.Notification;
 
+import de.cas.vaadin.carrental.service.Navigation;
+import de.cas.vaadin.carrental.service.Routes;
 import de.cas.vaadin.carrental.service.Services;
 import de.cas.vaadin.carrental.service.exception.UserNotFoundException;
 import de.cas.vaadin.carrental.service.exception.WrongPasswordException;
@@ -32,7 +34,7 @@ public class LoginPresenter implements LoginView.LoginViewListener {
 
 	public void tryToLogin(String username, String password) throws UserNotFoundException, WrongPasswordException {
 		this.loginService.authenticateAndGetUser(username, password);
-		Notification.show("Success");
+		Navigation.navigateTo(Routes.VEHICLES);
 	}
 
 }

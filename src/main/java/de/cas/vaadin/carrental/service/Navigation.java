@@ -2,7 +2,6 @@ package de.cas.vaadin.carrental.service;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewDisplay;
 import com.vaadin.ui.UI;
 
 public class Navigation {
@@ -16,5 +15,7 @@ public class Navigation {
 		navigator.addView(route.getPath(), view);
 	}
 	
-	
+	public static void navigateTo(Routes route) {
+		navigator.navigateTo(route.getPath());
+	}
 }
