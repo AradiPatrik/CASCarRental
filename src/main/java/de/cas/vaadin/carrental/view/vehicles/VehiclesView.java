@@ -15,6 +15,8 @@ public interface VehiclesView extends View {
 		void onCheckBoxValueChanged(ValueChangeEvent event);
 		void onDeleteClick(Button.ClickEvent event);
 		void onNewVehicleButtonClick(Button.ClickEvent event);
+		void onVehicleAddClick(Button.ClickEvent event);
+		void onModalCancleClick(Button.ClickEvent event);
 	}
 	
 	void addListener(VehiclesViewListener listener);
@@ -22,6 +24,7 @@ public interface VehiclesView extends View {
 	void setColumnHeader(String propertyName, String headerName);
 	void setVisibleColumns(Object... propertyName);
 	void displayModalDialog();
+	void closeModalDialog();
 	Object getSelectedRows();
 	
 }

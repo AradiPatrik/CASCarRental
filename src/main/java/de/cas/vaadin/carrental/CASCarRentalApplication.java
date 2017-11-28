@@ -42,6 +42,7 @@ public class CASCarRentalApplication extends UI {
     	Navigation.init(this);
     	Navigation.addView(Routes.LOGIN, loginView);
     	Navigation.addView(Routes.VEHICLES, vehiclesView);
+    	this.setWidthUndefined();
     }
     
     public static UI getMainUI() {

@@ -32,7 +32,8 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 	
 	@Override
 	public void onCheckBoxValueChanged(ValueChangeEvent event) {
-		isHideDeletedCheckBoxTicked = !isHideDeletedCheckBoxTicked;		
+		isHideDeletedCheckBoxTicked = !isHideDeletedCheckBoxTicked;
+		displayVehiclesAccordingToCheckBoxState();
 	}
 
 	@Override
@@ -56,7 +57,7 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 
 	@Override
 	public void onNewVehicleButtonClick(ClickEvent event) {
-		// TODO Auto-generated method stub
+		this.vehiclesView.displayModalDialog();
 	}
 	
 	private BeanContainer<String, Vehicle> convertListToBeanContainer(List<Vehicle> vehicles) {
@@ -67,5 +68,15 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 			vehicleBeanContainer.addBean(e);
 		});
 		return vehicleBeanContainer;
+	}
+
+	@Override
+	public void onVehicleAddClick(ClickEvent event) {
+		
+	}
+
+	@Override
+	public void onModalCancleClick(ClickEvent event) {
+		this.vehiclesView.closeModalDialog();
 	}
 }
