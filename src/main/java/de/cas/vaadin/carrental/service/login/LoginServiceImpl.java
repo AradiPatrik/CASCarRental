@@ -3,6 +3,7 @@ package de.cas.vaadin.carrental.service.login;
 import java.util.Optional;
 
 import de.cas.vaadin.carrental.model.Customer;
+import de.cas.vaadin.carrental.service.Services;
 import de.cas.vaadin.carrental.service.customer.CustomerService;
 import de.cas.vaadin.carrental.service.customer.CustomerServiceImpl;
 import de.cas.vaadin.carrental.service.exception.UserNotFoundException;
@@ -13,7 +14,7 @@ public class LoginServiceImpl implements LoginService {
 	private CustomerService customerService;
 
 	public LoginServiceImpl() {
-		this.customerService = new CustomerServiceImpl();
+		this.customerService = Services.getCustomerService();
 	}
 
 	@Override

@@ -1,8 +1,9 @@
-package de.cas.vaadin.carrental.view;
+package de.cas.vaadin.carrental.view.login;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
@@ -27,8 +28,9 @@ public class LoginViewImpl extends CustomComponent implements LoginView, Button.
 		FormLayout layout = new FormLayout();
 		loginButton.addClickListener(this);
 		layout.addComponents(usernameTextField, passwordField, loginButton);
-
-		setCompositionRoot(layout);
+		layout.setMargin(true);
+		layout.setSpacing(true);
+		this.setCompositionRoot(layout);
 	}
 
 	List<LoginViewListener> listeners = new ArrayList<>();
@@ -53,6 +55,11 @@ public class LoginViewImpl extends CustomComponent implements LoginView, Button.
 	@Override
 	public void notifyUserNotFound(String username) {
 		Notification.show(WRONG_USER_CAPTION + username, WRONG_USER_MESSAGE, Type.ERROR_MESSAGE);
+	}
+
+	@Override
+	public void enter(ViewChangeEvent event) {
+		
 	}
 
 }

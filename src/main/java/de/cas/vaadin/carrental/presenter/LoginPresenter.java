@@ -1,18 +1,22 @@
 package de.cas.vaadin.carrental.presenter;
 
+import com.vaadin.ui.Notification;
+
+import de.cas.vaadin.carrental.service.Services;
 import de.cas.vaadin.carrental.service.exception.UserNotFoundException;
 import de.cas.vaadin.carrental.service.exception.WrongPasswordException;
 import de.cas.vaadin.carrental.service.login.LoginService;
-import de.cas.vaadin.carrental.view.LoginView;
+import de.cas.vaadin.carrental.view.login.LoginView;
 
 public class LoginPresenter implements LoginView.LoginViewListener {
 
 	LoginView loginView;
 	LoginService loginService;
 
-	public LoginPresenter(LoginService loginService, LoginView loginView) {
-		this.loginService = loginService;
+	public LoginPresenter(LoginView loginView) {
+		this.loginService = Services.getLoginService();
 		this.loginView = loginView;
+		this.loginView.addListener(this);
 	}
 
 	@Override
@@ -28,6 +32,7 @@ public class LoginPresenter implements LoginView.LoginViewListener {
 
 	public void tryToLogin(String username, String password) throws UserNotFoundException, WrongPasswordException {
 		this.loginService.authenticateAndGetUser(username, password);
+		Notification.show("Success");
 	}
 
 }

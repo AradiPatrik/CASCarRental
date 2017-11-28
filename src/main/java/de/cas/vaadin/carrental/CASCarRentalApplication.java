@@ -8,13 +8,14 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 import de.cas.vaadin.carrental.presenter.LoginPresenter;
-import de.cas.vaadin.carrental.service.login.LoginService;
-import de.cas.vaadin.carrental.service.login.LoginServiceImpl;
-import de.cas.vaadin.carrental.view.LoginView;
-import de.cas.vaadin.carrental.view.LoginViewImpl;
+import de.cas.vaadin.carrental.service.Navigation;
+import de.cas.vaadin.carrental.service.Routes;
+import de.cas.vaadin.carrental.view.login.LoginView;
+import de.cas.vaadin.carrental.view.login.LoginViewImpl;
+import de.cas.vaadin.carrental.view.vehicles.VehiclesView;
+import de.cas.vaadin.carrental.view.vehicles.VehiclesViewImpl;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -27,17 +28,14 @@ import de.cas.vaadin.carrental.view.LoginViewImpl;
 @Title("CAS Car Rental Application")
 public class CASCarRentalApplication extends UI {
 
-
-	
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-    	final LoginViewImpl loginView = new LoginViewImpl();
-    	final LoginService loginService = new LoginServiceImpl();
-    	final LoginPresenter loginPresenter = new LoginPresenter(loginService, loginView);
-    	loginView.addListener(loginPresenter);
-    	VerticalLayout layout = new VerticalLayout();
-    	layout.addComponent(loginView);
-    	setContent(loginView);
+    	final LoginView loginView = new LoginViewImpl();
+    	final LoginPresenter loginPresenter = new LoginPresenter(loginView);
+    	final VehiclesView vehiclesView = new VehiclesViewImpl();
+    	Navigation.init(this);
+    	Navigation.addView(Routes.LOGIN, loginView);
+    	Navigation.addView(Routes.VEHICLES, vehiclesView);
     }
 
     @WebServlet(value = {"/carrental/*", "/VAADIN/*"}, name = "CASCarRentalApplicationServlet", asyncSupported = true)
