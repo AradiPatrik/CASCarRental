@@ -7,8 +7,9 @@ import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.Window;
+import com.vaadin.ui.VerticalLayout;
 
 import de.cas.vaadin.carrental.presenter.LoginPresenter;
 import de.cas.vaadin.carrental.presenter.VehiclesPresenter;
@@ -42,6 +43,7 @@ public class CASCarRentalApplication extends UI {
     	Navigation.init(this);
     	Navigation.addView(Routes.LOGIN, loginView);
     	Navigation.addView(Routes.VEHICLES, vehiclesView);
+    	VerticalLayout layout = new VerticalLayout();
     	this.setWidthUndefined();
     }
     

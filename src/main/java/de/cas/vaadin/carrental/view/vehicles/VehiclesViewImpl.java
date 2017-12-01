@@ -20,9 +20,14 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 import de.cas.vaadin.carrental.CASCarRentalApplication;
+import de.cas.vaadin.carrental.presenter.NavigationPresenter;
+import de.cas.vaadin.carrental.view.navigation.NavigationView;
+import de.cas.vaadin.carrental.view.navigation.NavigationViewImpl;
 
 public class VehiclesViewImpl extends CustomComponent implements VehiclesView {
-
+	
+	private final NavigationView navigationView = new NavigationViewImpl();
+	
 	private List<VehiclesViewListener> listeners = new ArrayList<>();
 	private final VerticalLayout mainLayout = new VerticalLayout();
 	private final HorizontalLayout controlls = new HorizontalLayout();
@@ -43,6 +48,8 @@ public class VehiclesViewImpl extends CustomComponent implements VehiclesView {
 	private final Button cancelButton = new Button("Cancel", this::notifyCancelModalButtonClick);
 
 	public VehiclesViewImpl() {
+		final NavigationPresenter presenter = new NavigationPresenter(navigationView);
+		
 		vehiclesTable.setMultiSelect(true);
 		vehiclesTable.setSelectable(true);
 		vehiclesTable.setImmediate(true);
@@ -55,7 +62,8 @@ public class VehiclesViewImpl extends CustomComponent implements VehiclesView {
 		controlls.setSpacing(true);
 		controlls.setComponentAlignment(hideDeletedCheckBox, Alignment.MIDDLE_LEFT);
 
-		this.mainLayout.addComponents(vehiclesTable, controlls);
+		this.mainLayout.addComponent(navigationView);
+		this.mainLayout.addComponents(navigationView, vehiclesTable, controlls);
 		this.mainLayout.setMargin(true);
 		this.mainLayout.setSpacing(true);
 		this.setCompositionRoot(mainLayout);
@@ -133,5 +141,7 @@ public class VehiclesViewImpl extends CustomComponent implements VehiclesView {
 	public void notifyCancelModalButtonClick(Button.ClickEvent event) {
 		listeners.forEach(e -> e.onModalCancleClick(event));
 	}
+	
+	
 
 }

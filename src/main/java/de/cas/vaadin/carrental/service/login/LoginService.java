@@ -8,7 +8,6 @@ import de.cas.vaadin.carrental.service.exception.UserNotFoundException;
 import de.cas.vaadin.carrental.service.exception.WrongPasswordException;
 
 public interface LoginService {
-
 	Customer authenticateAndGetUser(String username, String password)
 			throws UserNotFoundException, WrongPasswordException;
 }
