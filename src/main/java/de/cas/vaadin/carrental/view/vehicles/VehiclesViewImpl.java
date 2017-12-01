@@ -68,7 +68,7 @@ public class VehiclesViewImpl extends CustomComponent implements VehiclesView {
 		dialogContentFormLayout.addComponents(manufacturerField, typeField, dailyPriceField, vehicleStateComboBox,
 				numberPlateField, modalButtons);
 		dialog.setContent(dialogContentFormLayout);
-
+		dialog.setModal(true);
 	}
 
 	@Override
