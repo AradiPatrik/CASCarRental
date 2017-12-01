@@ -12,4 +12,6 @@ public interface VehicleService {
 	List<Vehicle> delete(Vehicle vehicle);
 	List<Vehicle> delete(String numberPlate);
 	List<Vehicle> getReadyToGoVehicles();
+	List<Vehicle> addVehicle(Vehicle vehicle);
+	List<Vehicle> setVehicleStatusToBorrowed(Vehicle vehicle);
 }

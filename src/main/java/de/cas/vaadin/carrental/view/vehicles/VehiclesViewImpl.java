@@ -20,6 +20,7 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 import de.cas.vaadin.carrental.CASCarRentalApplication;
+import de.cas.vaadin.carrental.model.VehicleState;
 import de.cas.vaadin.carrental.presenter.NavigationPresenter;
 import de.cas.vaadin.carrental.view.navigation.NavigationView;
 import de.cas.vaadin.carrental.view.navigation.NavigationViewImpl;
@@ -36,7 +37,7 @@ public class VehiclesViewImpl extends CustomComponent implements VehiclesView {
 	private final Button newVehicleButton = new Button("Create New Vehicle", this::notifyNewVehicleButtonClick);
 	private final Table vehiclesTable = new Table();
 
-	private final Window dialog = new Window("Modal dialog");
+	private final Window dialog = new Window("Create Vehicle");
 	private final FormLayout dialogContentFormLayout = new FormLayout();
 	private final TextField manufacturerField = new TextField("Manufacturer");
 	private final TextField typeField = new TextField("Type");
@@ -45,7 +46,7 @@ public class VehiclesViewImpl extends CustomComponent implements VehiclesView {
 	private final TextField numberPlateField = new TextField("Nubmer Plate");
 	private final HorizontalLayout modalButtons = new HorizontalLayout();
 	private final Button addVehicleButton = new Button("Add Vehicle", this::notifyAddVehicleModalButtonClick);
-	private final Button cancelButton = new Button("Cancel", this::notifyCancelModalButtonClick);
+	private final Button cancelButton = new Button("Close", this::notifyCancelModalButtonClick);
 
 	public VehiclesViewImpl() {
 		final NavigationPresenter presenter = new NavigationPresenter(navigationView);
@@ -77,6 +78,7 @@ public class VehiclesViewImpl extends CustomComponent implements VehiclesView {
 				numberPlateField, modalButtons);
 		dialog.setContent(dialogContentFormLayout);
 		dialog.setModal(true);
+		vehicleStateComboBox.addItems(VehicleState.values());
 	}
 
 	@Override
@@ -141,7 +143,31 @@ public class VehiclesViewImpl extends CustomComponent implements VehiclesView {
 	public void notifyCancelModalButtonClick(Button.ClickEvent event) {
 		listeners.forEach(e -> e.onModalCancleClick(event));
 	}
-	
-	
 
+	@Override
+	public String getNewManufacturer() {
+		return this.manufacturerField.getValue();
+	}
+
+	@Override
+	public String getNewTypeProperty() {
+		return this.typeField.getValue();
+	}
+
+	@Override
+	public String getDailyPriceProperty() {
+		return this.dailyPriceField.getValue();
+	}
+
+	@Override
+	public VehicleState getVehicleStateProperty() {
+		return (VehicleState)this.vehicleStateComboBox.getValue();
+	}
+
+	@Override
+	public String getNumberPlateProperty() {
+		return this.numberPlateField.getValue();
+	}
+	
+	
 }

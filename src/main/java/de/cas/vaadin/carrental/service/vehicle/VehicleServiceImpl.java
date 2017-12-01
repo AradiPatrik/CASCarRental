@@ -63,6 +63,21 @@ public class VehicleServiceImpl implements VehicleService {
 		return this.vehicles.stream().filter(e -> e.getNumberPlate().equals(numberPlate)).findFirst();
 	}
 	
+	@Override
+	public List<Vehicle> addVehicle(Vehicle vehicle) {
+		this.vehicles.add(vehicle);
+		return this.vehicles;
+	}
+
+	@Override
+	public List<Vehicle> setVehicleStatusToBorrowed(Vehicle vehicle) {
+		Optional<Vehicle> optionalVehicle = this.vehicles.stream().filter(e -> e.getNumberPlate().equals(vehicle.getNumberPlate())).findFirst();
+		if (optionalVehicle.isPresent()) {
+			optionalVehicle.get().setVehicleState(VehicleState.BORROWED);
+		}
+		return null;
+	}
+
 	private void ensureData() {
 		vehicles.add(new Vehicle("Mercedez", "Fast", new Euro(100), VehicleState.READY_TO_GO, "GKA 569"));
 		vehicles.add(new Vehicle("VolksWagen", "Golf", new Euro(200), VehicleState.READY_TO_GO, "GFA 269"));

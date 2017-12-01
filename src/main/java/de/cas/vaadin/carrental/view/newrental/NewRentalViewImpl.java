@@ -125,6 +125,17 @@ public class NewRentalViewImpl extends CustomComponent implements NewRentalView 
 	}
 	
 	@Override
+	public void clearCustomerSelection() {
+		this.customersTable.setValue(null);
+	}
+
+	@Override
+	public void clearVehicleSelection() {
+		this.vehiclesTable.select(null);
+		this.vehiclesTable.setValue(null);
+	}
+
+	@Override
 	public void setNumberOfVehicles(Integer num) {
 		this.numberOfVehiclesField.setValue(num.toString());
 	}

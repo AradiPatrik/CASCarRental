@@ -80,10 +80,22 @@ public class NewRentalPresenter implements NewRentalViewListener {
 				this.rentalService.addRental(new Rental(this.rentalService.getAllRentals().size() + 1,
 						this.selectedCustomer, vehicle, this.startDate, this.endDate));
 				this.newRentalView.showRentSuccessfull("Rent was successfull! :)");
+				this.vehicleService.setVehicleStatusToBorrowed(vehicle);
+				setVehiclesData();
+				setHumanReadableHeaderForVehicleTable();
+				hideUnnecesarryColumnsInVehiclesTable();
+				clearAll();
 			}
 		} else {
 			this.newRentalView.showRentUnsuccessfull("Select some cars, select a customer, and select both end and start date please");
 		}
+	}
+	
+	private void clearAll() {
+		this.newRentalView.clearEndDate();
+		this.newRentalView.clearStartDate();
+		this.newRentalView.clearCustomerSelection();
+		this.newRentalView.clearVehicleSelection();
 	}
 
 	private boolean isVehicleSelected() {
@@ -143,6 +155,9 @@ public class NewRentalPresenter implements NewRentalViewListener {
 	@Override
 	public void onVehicleTableValueChange(ValueChangeEvent event) {
 		List<Vehicle> tmp = new ArrayList<>();
+		if(event.getProperty().getValue() == null) {
+			return;
+		}
 		((Set<String>) event.getProperty().getValue()).forEach(e -> {
 			tmp.add(this.vehicleService.getVehicle(e).get());
 		});
@@ -163,6 +178,9 @@ public class NewRentalPresenter implements NewRentalViewListener {
 
 	@Override
 	public void onCustomerTableValueChange(ValueChangeEvent event) {
+		if (event.getProperty().getValue() == null) {
+			return;
+		}
 		this.selectedCustomer = this.customerService.getCustomer((String) event.getProperty().getValue()).get();
 	}
 }

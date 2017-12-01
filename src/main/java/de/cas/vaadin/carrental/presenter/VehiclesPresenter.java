@@ -6,6 +6,7 @@ import java.util.Set;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.ui.Button.ClickEvent;
 
+import de.cas.vaadin.carrental.model.Euro;
 import de.cas.vaadin.carrental.model.Vehicle;
 import de.cas.vaadin.carrental.service.Services;
 import de.cas.vaadin.carrental.service.vehicle.VehicleService;
@@ -17,19 +18,19 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 	private VehicleService vehicleService = Services.getVehicleService();
 	private VehiclesView vehiclesView;
 	private boolean isHideDeletedCheckBoxTicked = false;
-	
+
 	public VehiclesPresenter(VehiclesView vehiclesView) {
 		this.vehiclesView = vehiclesView;
 		this.vehiclesView.addListener(this);
-		setTableData(this.vehicleService.getVehicles());
+		setAndDisplayTableData(this.vehicleService.getVehicles());
+	}
+
+	private void setAndDisplayTableData(List<Vehicle> vehicles) {
+		vehiclesView.attachVehiclesData(ContainerUtils.convertVehicleListToVehicleBeanContainer(vehicles));
 		setHumanReadeableHeader();
 		hideUnnecessaryColumnsInTable();
 	}
 
-	private void setTableData(List<Vehicle> vehicles) {
-		vehiclesView.attachVehiclesData(ContainerUtils.convertVehicleListToVehicleBeanContainer(vehicles));
-	}
-	
 	private void setHumanReadeableHeader() {
 		vehiclesView.setColumnHeader("dailyPrice.value", "Daily Price");
 		vehiclesView.setColumnHeader("manufacturer", "Manufacturer");
@@ -37,11 +38,11 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 		vehiclesView.setColumnHeader("vehicleState", "State");
 		vehiclesView.setColumnHeader("numberPlate", "Numberplate");
 	}
-	
+
 	private void hideUnnecessaryColumnsInTable() {
 		vehiclesView.setVisibleColumns("manufacturer", "type", "dailyPrice.value", "vehicleState", "numberPlate");
 	}
-	
+
 	@Override
 	public void onCheckBoxValueChanged(ValueChangeEvent event) {
 		isHideDeletedCheckBoxTicked = !isHideDeletedCheckBoxTicked;
@@ -50,19 +51,19 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 
 	@Override
 	public void onDeleteClick(ClickEvent event) {
-		Set<String> selection = (Set<String>)vehiclesView.getSelectedRows();
-		if (selection != null && !selection.isEmpty()) {			
+		Set<String> selection = (Set<String>) vehiclesView.getSelectedRows();
+		if (selection != null && !selection.isEmpty()) {
 			selection.forEach(this.vehicleService::delete);
 		}
 		displayVehiclesAccordingToCheckBoxState();
 	}
-	
+
 	void displayVehiclesAccordingToCheckBoxState() {
 		if (isHideDeletedCheckBoxTicked) {
-			setTableData(this.vehicleService.getUndeletedVehicles());
+			setAndDisplayTableData(this.vehicleService.getUndeletedVehicles());
 			hideUnnecessaryColumnsInTable();
 		} else {
-			setTableData(this.vehicleService.getVehicles());
+			setAndDisplayTableData(this.vehicleService.getVehicles());
 			hideUnnecessaryColumnsInTable();
 		}
 	}
@@ -74,7 +75,10 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 
 	@Override
 	public void onVehicleAddClick(ClickEvent event) {
-		// TODO: implement this
+		Vehicle vehicle = new Vehicle(this.vehiclesView.getNewManufacturer(), this.vehiclesView.getNewTypeProperty(),
+				new Euro(Double.parseDouble(this.vehiclesView.getDailyPriceProperty())),
+				this.vehiclesView.getVehicleStateProperty(), this.vehiclesView.getNumberPlateProperty());
+		this.setAndDisplayTableData(this.vehicleService.addVehicle(vehicle));
 	}
 
 	@Override

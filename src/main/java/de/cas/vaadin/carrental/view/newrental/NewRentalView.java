@@ -29,6 +29,8 @@ public interface NewRentalView extends View {
 	
 	void clearStartDate();
 	void clearEndDate();
+	void clearCustomerSelection();
+	void clearVehicleSelection();
 	
 	void setNumberOfVehicles(Integer num);
 	void setDailyPrice(Double value);

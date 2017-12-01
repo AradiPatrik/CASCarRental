@@ -1,13 +1,11 @@
 package de.cas.vaadin.carrental.view.vehicles;
 
-import java.util.List;
-
 import com.vaadin.data.Container;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Button;
 
-import de.cas.vaadin.carrental.model.Vehicle;
+import de.cas.vaadin.carrental.model.VehicleState;
 
 public interface VehiclesView extends View {
 	
@@ -27,4 +25,9 @@ public interface VehiclesView extends View {
 	void closeModalDialog();
 	Object getSelectedRows();
 	
+	String getNewManufacturer();
+	String getNewTypeProperty();
+	String getDailyPriceProperty();
+	VehicleState getVehicleStateProperty();
+	String getNumberPlateProperty();
 }
