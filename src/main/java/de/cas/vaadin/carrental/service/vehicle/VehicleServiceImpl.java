@@ -54,6 +54,11 @@ public class VehicleServiceImpl implements VehicleService {
 	}
 	
 	@Override
+	public List<Vehicle> getReadyToGoVehicles() {
+		return this.vehicles.stream().filter(e -> e.getVehicleState() == VehicleState.READY_TO_GO).collect(Collectors.toList());
+	}
+
+	@Override
 	public Optional<Vehicle> getVehicle(String numberPlate) {
 		return this.vehicles.stream().filter(e -> e.getNumberPlate().equals(numberPlate)).findFirst();
 	}

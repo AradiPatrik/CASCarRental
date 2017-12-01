@@ -5,7 +5,7 @@ public enum Routes {
 	VEHICLES("vehicles"),
 	CUSTOMERS("customers"),
 	RENTALS("rentals"),
-	NEW_RENTAL("rentals/new");
+	NEW_RENTAL("new_rental");
 	
 	private final String path;
 	

@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Set;
 
 import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.util.BeanContainer;
 import com.vaadin.ui.Button.ClickEvent;
 
 import de.cas.vaadin.carrental.model.Vehicle;
 import de.cas.vaadin.carrental.service.Services;
 import de.cas.vaadin.carrental.service.vehicle.VehicleService;
+import de.cas.vaadin.carrental.utils.ContainerUtils;
 import de.cas.vaadin.carrental.view.vehicles.VehiclesView;
 
 public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
@@ -21,15 +21,23 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 	public VehiclesPresenter(VehiclesView vehiclesView) {
 		this.vehiclesView = vehiclesView;
 		this.vehiclesView.addListener(this);
-		vehiclesView.attachVehiclesData(convertListToBeanContainer(this.vehicleService.getVehicles()));
+		setTableData(this.vehicleService.getVehicles());
+		setHumanReadeableHeader();
+		hideUnnecessaryColumnsInTable();
+	}
+
+	private void setTableData(List<Vehicle> vehicles) {
+		vehiclesView.attachVehiclesData(ContainerUtils.convertVehicleListToVehicleBeanContainer(vehicles));
+	}
+	
+	private void setHumanReadeableHeader() {
 		vehiclesView.setColumnHeader("dailyPrice.value", "Daily Price");
 		vehiclesView.setColumnHeader("manufacturer", "Manufacturer");
 		vehiclesView.setColumnHeader("type", "Type");
 		vehiclesView.setColumnHeader("vehicleState", "State");
 		vehiclesView.setColumnHeader("numberPlate", "Numberplate");
-		hideUnnecessaryColumnsInTable();
 	}
-
+	
 	private void hideUnnecessaryColumnsInTable() {
 		vehiclesView.setVisibleColumns("manufacturer", "type", "dailyPrice.value", "vehicleState", "numberPlate");
 	}
@@ -51,10 +59,10 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 	
 	void displayVehiclesAccordingToCheckBoxState() {
 		if (isHideDeletedCheckBoxTicked) {
-			vehiclesView.attachVehiclesData(convertListToBeanContainer(this.vehicleService.getUndeletedVehicles()));
+			setTableData(this.vehicleService.getUndeletedVehicles());
 			hideUnnecessaryColumnsInTable();
 		} else {
-			vehiclesView.attachVehiclesData(convertListToBeanContainer(this.vehicleService.getVehicles()));
+			setTableData(this.vehicleService.getVehicles());
 			hideUnnecessaryColumnsInTable();
 		}
 	}
@@ -62,16 +70,6 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 	@Override
 	public void onNewVehicleButtonClick(ClickEvent event) {
 		this.vehiclesView.displayModalDialog();
-	}
-	
-	private BeanContainer<String, Vehicle> convertListToBeanContainer(List<Vehicle> vehicles) {
-		BeanContainer<String, Vehicle> vehicleBeanContainer = new BeanContainer<String, Vehicle>(Vehicle.class);
-		vehicleBeanContainer.setBeanIdProperty("numberPlate");
-		vehicleBeanContainer.addNestedContainerProperty("dailyPrice.value");
-		vehicles.forEach(e -> {
-			vehicleBeanContainer.addBean(e);
-		});
-		return vehicleBeanContainer;
 	}
 
 	@Override

@@ -11,4 +11,5 @@ public interface VehicleService {
 	Optional<Vehicle> getVehicle(String numberPlate);
 	List<Vehicle> delete(Vehicle vehicle);
 	List<Vehicle> delete(String numberPlate);
+	List<Vehicle> getReadyToGoVehicles();
 }
