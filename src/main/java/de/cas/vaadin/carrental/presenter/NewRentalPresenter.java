@@ -38,8 +38,8 @@ public class NewRentalPresenter implements NewRentalViewListener {
 		this.setCostumerData();
 		this.setHumanReadableHeaderForVehicleTable();
 		this.hideUnnecesarryColumnsInVehiclesTable();
-		this.setHumanReadeableHeader();
-		this.hideUnnecessaryColumnsInTable();
+		this.setHumanReadeableHeaderInCustomerTable();
+		this.hideUnnecessaryColumnsInCustomerTable();
 	}
 
 	private void setVehiclesData() {
@@ -63,13 +63,13 @@ public class NewRentalPresenter implements NewRentalViewListener {
 		this.newRentalView.setVehiclesTableVisibleColumns("manufacturer", "type", "numberPlate", "dailyPrice.value");
 	}
 
-	private void setHumanReadeableHeader() {
+	private void setHumanReadeableHeaderInCustomerTable() {
 		this.newRentalView.setCustomerTableHeader("name", "Name");
 		this.newRentalView.setCustomerTableHeader("contactInfo.telephoneNumber", "Phone Number");
 		this.newRentalView.setCustomerTableHeader("contactInfo.address", "Address");
 	}
 
-	private void hideUnnecessaryColumnsInTable() {
+	private void hideUnnecessaryColumnsInCustomerTable() {
 		this.newRentalView.setCustomerTableVisibleColumns("name", "contactInfo.telephoneNumber", "contactInfo.address");
 	}
 
@@ -183,4 +183,13 @@ public class NewRentalPresenter implements NewRentalViewListener {
 		}
 		this.selectedCustomer = this.customerService.getCustomer((String) event.getProperty().getValue()).get();
 	}
+
+	@Override
+	public void onViewEnter() {
+		setVehiclesData();
+		setHumanReadableHeaderForVehicleTable();
+		hideUnnecesarryColumnsInVehiclesTable();
+	}
+	
+	
 }

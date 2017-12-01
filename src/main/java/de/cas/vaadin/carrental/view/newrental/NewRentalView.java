@@ -12,6 +12,7 @@ public interface NewRentalView extends View {
 		void onEndDateValueChange(Property.ValueChangeEvent event);
 		void onVehicleTableValueChange(Property.ValueChangeEvent event);
 		void onCustomerTableValueChange(Property.ValueChangeEvent event);
+		void onViewEnter();
 	}
 	
 	void addListener(NewRentalViewListener listener);

@@ -81,7 +81,7 @@ public class NewRentalViewImpl extends CustomComponent implements NewRentalView 
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		// intentionally left blank
+		this.listeners.forEach(e->e.onViewEnter());
 	}
 
 	@Override

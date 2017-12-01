@@ -27,8 +27,7 @@ public class NavigationViewImpl extends CustomComponent implements NavigationVie
 		this.listeners.add(listener);
 	}
 	
-	public void notifyVehiclesButtonClick(Button.ClickEvent event) {
-		System.out.println("notify vehicles");
+	public void notifyVehiclesButtonClick(Button.ClickEvent event) {;
 		this.listeners.forEach(e -> e.onVehiclesClick());
 	}
 	
