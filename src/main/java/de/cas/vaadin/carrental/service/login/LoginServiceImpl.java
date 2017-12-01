@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginService {
 		Optional<Customer> optionalCustomer = this.customerService.getCustomer(username);
 		if (optionalCustomer.isPresent()) {
 			Customer customer = optionalCustomer.get();
-			if (customer.getCredentials().getPassword().equals(password)) {
+			if (customer.getCredentals().getPassword().equals(password)) {
 				return customer;
 			} else {
 				throw new WrongPasswordException();

@@ -48,7 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	boolean isUserNameMatches(Customer customer, String name) {
-		return customer.getCredentials().getUsername().equals(name);
+		return customer.getCredentals().getUsername().equals(name);
 	}
 
 }

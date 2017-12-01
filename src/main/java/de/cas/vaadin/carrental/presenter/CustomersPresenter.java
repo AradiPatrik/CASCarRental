@@ -34,4 +34,5 @@ public class CustomersPresenter implements CustomersViewListener{
 	private void hideUnnecessaryColumnsInTable() {
 		this.customersView.setVisibleColumns("name", "contactInfo.telephoneNumber", "contactInfo.address");
 	}
+	
 }

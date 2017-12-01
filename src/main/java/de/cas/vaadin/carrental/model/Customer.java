@@ -2,21 +2,21 @@ package de.cas.vaadin.carrental.model;
 
 public class Customer {
 	private String name;
-	private Credentals credentials;
+	private Credentals credentals;
 	private ContactInfo contactInfo;
 	
-	public Customer(Credentals credentials, String name, ContactInfo contactInfo) {
+	public Customer(Credentals credentals, String name, ContactInfo contactInfo) {
 		super();
-		this.credentials = credentials;
+		this.credentals = credentals;
 		this.name = name;
 		this.contactInfo = contactInfo;
 	}
 	
-	public Credentals getCredentials() {
-		return credentials;
+	public Credentals getCredentals() {
+		return credentals;
 	}
-	public void setCredentials(Credentals credentials) {
-		this.credentials = credentials;
+	public void setCredentals(Credentals credentals) {
+		this.credentals = credentals;
 	}
 	public String getName() {
 		return name;

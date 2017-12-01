@@ -5,7 +5,7 @@ import com.vaadin.navigator.View;
 
 public interface RentalsView extends View {
 	interface RentalsViewListener {
-		
+		void onViewEnter();
 	}
 	
 	void addListener(RentalsViewListener listener);

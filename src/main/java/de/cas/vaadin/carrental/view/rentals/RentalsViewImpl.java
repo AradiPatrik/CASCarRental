@@ -36,7 +36,7 @@ public class RentalsViewImpl extends CustomComponent implements RentalsView {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		// intentionally left blank
+		this.listeners.forEach(e -> e.onViewEnter());
 	}
 
 	@Override

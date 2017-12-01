@@ -35,4 +35,11 @@ public class RentalsPresenter implements RentalsViewListener {
 	private void hideUnnecessaryColumnsInTable() {
 		this.rentalsView.setVisibleColumns("customer.name", "vehicle.manufacturer", "vehicle.type", "vehicle.numberPlate");
 	}
+
+	@Override
+	public void onViewEnter() {
+		this.rentalsView.attachRentalData(ContainerUtils.convertRentalListToRentalBeanContainer(this.rentalService.getAllRentals()));
+		setHumanReadeableHeader();
+		hideUnnecessaryColumnsInTable();
+	}
 }

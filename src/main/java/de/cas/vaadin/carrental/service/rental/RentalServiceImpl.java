@@ -25,6 +25,12 @@ public class RentalServiceImpl implements RentalService {
 	public List<Rental> getAllRentals() {
 		return this.rentals;
 	}
+	
+	@Override
+	public List<Rental> addRental(Rental rental) {
+		this.rentals.add(rental);
+		return this.rentals;
+	}
 
 	@Override
 	public void ensureData() {

@@ -22,9 +22,10 @@ public class ContainerUtils {
 	
 	public static BeanContainer<String, Customer> convertCostumerListToCostumerBeanContainer(List<Customer> customers) {
 		BeanContainer<String, Customer> customerBeanContainer = new BeanContainer<String, Customer>(Customer.class);
-		customerBeanContainer.setBeanIdProperty("name");
 		customerBeanContainer.addNestedContainerProperty("contactInfo.telephoneNumber");
 		customerBeanContainer.addNestedContainerProperty("contactInfo.address");
+		customerBeanContainer.addNestedContainerProperty("credentals.username");
+		customerBeanContainer.setBeanIdProperty("credentals.username");
 		customers.forEach(e -> {
 			customerBeanContainer.addBean(e);
 		});
