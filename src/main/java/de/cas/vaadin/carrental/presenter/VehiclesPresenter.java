@@ -76,7 +76,7 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 
 	@Override
 	public void onVehicleAddClick(ClickEvent event) {
-		
+		// TODO: implement this
 	}
 
 	@Override

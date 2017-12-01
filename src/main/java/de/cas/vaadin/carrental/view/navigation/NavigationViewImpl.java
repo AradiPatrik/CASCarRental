@@ -24,7 +24,6 @@ public class NavigationViewImpl extends CustomComponent implements NavigationVie
 	
 	@Override
 	public void addListener(NavigationViewListener listener) {
-		System.out.println("added listener");
 		this.listeners.add(listener);
 	}
 	

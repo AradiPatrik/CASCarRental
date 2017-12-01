@@ -17,6 +17,10 @@ public class RentalServiceImpl implements RentalService {
 	private CustomerService customerService = Services.getCustomerService();
 	private VehicleService vehicleService = Services.getVehicleService();
 	
+	public RentalServiceImpl() {
+		ensureData();
+	}
+	
 	@Override
 	public List<Rental> getAllRentals() {
 		return this.rentals;
@@ -24,12 +28,12 @@ public class RentalServiceImpl implements RentalService {
 
 	@Override
 	public void ensureData() {
-		this.rentals.add(new Rental(customerService.getCustomer("Patrik Aradi").get(), vehicleService.getVehicle("GKA 569").get(), LocalDate.now(), LocalDate.now().plusMonths(1)));
-		this.rentals.add(new Rental(customerService.getCustomer("John Smith").get(), vehicleService.getVehicle("GFA 269").get(), LocalDate.now(), LocalDate.now().plusMonths(2)));
-		this.rentals.add(new Rental(customerService.getCustomer("Fekete Emil").get(), vehicleService.getVehicle("FFE 789").get(), LocalDate.now(), LocalDate.now().plusMonths(1)));
-		this.rentals.add(new Rental(customerService.getCustomer("Hajdu Levente").get(), vehicleService.getVehicle("HFE 834").get(), LocalDate.now(), LocalDate.now().plusMonths(3)));
-		this.rentals.add(new Rental(customerService.getCustomer("Zsakos Frodo").get(), vehicleService.getVehicle("RJS 469").get(), LocalDate.now(), LocalDate.now().plusMonths(1)));
-		this.rentals.add(new Rental(customerService.getCustomer("Regexp Jano").get(), vehicleService.getVehicle("HEJ 342").get(), LocalDate.now(), LocalDate.now().plusMonths(5)));
-		this.rentals.add(new Rental(customerService.getCustomer("Pal Annabella").get(), vehicleService.getVehicle("JJJ 381").get(), LocalDate.now(), LocalDate.now().plusMonths(1)));
+		this.rentals.add(new Rental(1, customerService.getCustomer("aradipatrik").get(), vehicleService.getVehicle("GKA 569").get(), LocalDate.now(), LocalDate.now().plusMonths(1)));
+		this.rentals.add(new Rental(2, customerService.getCustomer("johnsmith").get(), vehicleService.getVehicle("GFA 269").get(), LocalDate.now(), LocalDate.now().plusMonths(2)));
+		this.rentals.add(new Rental(3, customerService.getCustomer("feketeemil").get(), vehicleService.getVehicle("FFE 789").get(), LocalDate.now(), LocalDate.now().plusMonths(1)));
+		this.rentals.add(new Rental(4, customerService.getCustomer("hajdulevente").get(), vehicleService.getVehicle("HFE 834").get(), LocalDate.now(), LocalDate.now().plusMonths(3)));
+		this.rentals.add(new Rental(5, customerService.getCustomer("zsakosfrodo").get(), vehicleService.getVehicle("RJS 469").get(), LocalDate.now(), LocalDate.now().plusMonths(1)));
+		this.rentals.add(new Rental(6, customerService.getCustomer("regexpjano").get(), vehicleService.getVehicle("HEJ 342").get(), LocalDate.now(), LocalDate.now().plusMonths(5)));
+		this.rentals.add(new Rental(7, customerService.getCustomer("palannabella").get(), vehicleService.getVehicle("JJJ 381").get(), LocalDate.now(), LocalDate.now().plusMonths(1)));
 	}
 }

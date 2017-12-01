@@ -26,7 +26,6 @@ public class CustomersPresenter implements CustomersViewListener{
 		
 	}
 	
-	
 	private BeanContainer<String, Customer> convertListToBeanContainer(List<Customer> customers) {
 		BeanContainer<String, Customer> customerBeanContainer = new BeanContainer<String, Customer>(Customer.class);
 		customerBeanContainer.setBeanIdProperty("name");

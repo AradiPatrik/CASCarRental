@@ -7,20 +7,21 @@ import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import de.cas.vaadin.carrental.presenter.CustomersPresenter;
 import de.cas.vaadin.carrental.presenter.LoginPresenter;
+import de.cas.vaadin.carrental.presenter.RentalsPresenter;
 import de.cas.vaadin.carrental.presenter.VehiclesPresenter;
 import de.cas.vaadin.carrental.service.Navigation;
 import de.cas.vaadin.carrental.service.Routes;
-import de.cas.vaadin.carrental.service.customer.CustomerServiceImpl;
 import de.cas.vaadin.carrental.view.customers.CustomersView;
 import de.cas.vaadin.carrental.view.customers.CustomersViewImpl;
 import de.cas.vaadin.carrental.view.login.LoginView;
 import de.cas.vaadin.carrental.view.login.LoginViewImpl;
+import de.cas.vaadin.carrental.view.rentals.RentalsView;
+import de.cas.vaadin.carrental.view.rentals.RentalsViewImpl;
 import de.cas.vaadin.carrental.view.vehicles.VehiclesView;
 import de.cas.vaadin.carrental.view.vehicles.VehiclesViewImpl;
 
@@ -46,10 +47,13 @@ public class CASCarRentalApplication extends UI {
     	final VehiclesPresenter vehiclesPresenter = new VehiclesPresenter(vehiclesView);
     	final CustomersView customersView = new CustomersViewImpl();
     	final CustomersPresenter customersPresenter = new CustomersPresenter(customersView);
+    	final RentalsView rentalsView = new RentalsViewImpl();
+    	final RentalsPresenter rentalsPresenter = new RentalsPresenter(rentalsView);
     	Navigation.init(this);
     	Navigation.addView(Routes.LOGIN, loginView);
     	Navigation.addView(Routes.VEHICLES, vehiclesView);
     	Navigation.addView(Routes.CUSTOMERS, customersView);
+    	Navigation.addView(Routes.RENTALS, rentalsView);
     	VerticalLayout layout = new VerticalLayout();
     	this.setWidthUndefined();
     }

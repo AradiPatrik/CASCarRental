@@ -3,17 +3,27 @@ package de.cas.vaadin.carrental.model;
 import java.time.LocalDate;
 
 public class Rental {
+	private Integer id;
 	private Customer customer;
 	private Vehicle vehicle;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	
-	public Rental(Customer customer, Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
+	public Rental(Integer id, Customer customer, Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
 		super();
+		this.id = id;
 		this.customer = customer;
 		this.vehicle = vehicle;
 		this.startDate = startDate;
 		this.endDate = endDate;
+	}
+	
+	public Integer getId() {
+		return this.id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	public Customer getCustomer() {

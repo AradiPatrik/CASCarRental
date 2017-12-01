@@ -16,25 +16,21 @@ public class NavigationPresenter implements NavigationViewListener{
 	
 	@Override
 	public void onVehiclesClick() {
-		System.out.println("vehicles");
 		Navigation.navigateTo(Routes.VEHICLES);
 	}
 
 	@Override
 	public void onCustomersClick() {
-		System.out.println("customers");
 		Navigation.navigateTo(Routes.CUSTOMERS);
 	}
 
 	@Override
 	public void onRentalsClick() {
-		System.out.println("rentals");
 		Navigation.navigateTo(Routes.RENTALS);
 	}
 
 	@Override
 	public void onNewRentalClick() {
-		System.out.println("new rental");
 		Navigation.navigateTo(Routes.NEW_RENTAL);
 	}
 	
