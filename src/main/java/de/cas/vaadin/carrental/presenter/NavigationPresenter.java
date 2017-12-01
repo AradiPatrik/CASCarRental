@@ -3,7 +3,6 @@ package de.cas.vaadin.carrental.presenter;
 import de.cas.vaadin.carrental.service.Navigation;
 import de.cas.vaadin.carrental.service.Routes;
 import de.cas.vaadin.carrental.view.navigation.NavigationView;
-import de.cas.vaadin.carrental.view.navigation.NavigationViewImpl;
 import de.cas.vaadin.carrental.view.navigation.NavigationView.NavigationViewListener;
 
 public class NavigationPresenter implements NavigationViewListener{

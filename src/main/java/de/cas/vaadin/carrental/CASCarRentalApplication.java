@@ -11,10 +11,14 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import de.cas.vaadin.carrental.presenter.CustomersPresenter;
 import de.cas.vaadin.carrental.presenter.LoginPresenter;
 import de.cas.vaadin.carrental.presenter.VehiclesPresenter;
 import de.cas.vaadin.carrental.service.Navigation;
 import de.cas.vaadin.carrental.service.Routes;
+import de.cas.vaadin.carrental.service.customer.CustomerServiceImpl;
+import de.cas.vaadin.carrental.view.customers.CustomersView;
+import de.cas.vaadin.carrental.view.customers.CustomersViewImpl;
 import de.cas.vaadin.carrental.view.login.LoginView;
 import de.cas.vaadin.carrental.view.login.LoginViewImpl;
 import de.cas.vaadin.carrental.view.vehicles.VehiclesView;
@@ -40,9 +44,12 @@ public class CASCarRentalApplication extends UI {
     	final LoginPresenter loginPresenter = new LoginPresenter(loginView);
     	final VehiclesView vehiclesView = new VehiclesViewImpl();
     	final VehiclesPresenter vehiclesPresenter = new VehiclesPresenter(vehiclesView);
+    	final CustomersView customersView = new CustomersViewImpl();
+    	final CustomersPresenter customersPresenter = new CustomersPresenter(customersView);
     	Navigation.init(this);
     	Navigation.addView(Routes.LOGIN, loginView);
     	Navigation.addView(Routes.VEHICLES, vehiclesView);
+    	Navigation.addView(Routes.CUSTOMERS, customersView);
     	VerticalLayout layout = new VerticalLayout();
     	this.setWidthUndefined();
     }

@@ -2,9 +2,9 @@ package de.cas.vaadin.carrental.model;
 
 public class ContactInfo {
 	String telephoneNumber;
-	Address address;
+	String address;
 	
-	public ContactInfo(String telephoneNumber, Address address) {
+	public ContactInfo(String telephoneNumber, String address) {
 		super();
 		this.telephoneNumber = telephoneNumber;
 		this.address = address;
@@ -16,10 +16,10 @@ public class ContactInfo {
 	public void setTelephoneNumber(String telephoneNumber) {
 		this.telephoneNumber = telephoneNumber;
 	}
-	public Address getAddress() {
+	public String getAddress() {
 		return address;
 	}
-	public void setAddress(Address address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 	

@@ -2,6 +2,7 @@ package de.cas.vaadin.carrental.service.vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import de.cas.vaadin.carrental.model.Euro;
@@ -50,6 +51,11 @@ public class VehicleServiceImpl implements VehicleService {
 			}
 		}
 		return this.vehicles;
+	}
+	
+	@Override
+	public Optional<Vehicle> getVehicle(String numberPlate) {
+		return this.vehicles.stream().filter(e -> e.getNumberPlate().equals(numberPlate)).findFirst();
 	}
 	
 	private void ensureData() {

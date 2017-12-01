@@ -1,8 +1,8 @@
 package de.cas.vaadin.carrental.model;
 
 public class Customer {
-	private Credentals credentials;
 	private String name;
+	private Credentals credentials;
 	private ContactInfo contactInfo;
 	
 	public Customer(Credentals credentials, String name, ContactInfo contactInfo) {

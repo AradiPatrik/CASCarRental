@@ -23,6 +23,10 @@ public class VehiclesPresenter implements VehiclesView.VehiclesViewListener {
 		this.vehiclesView.addListener(this);
 		vehiclesView.attachVehiclesData(convertListToBeanContainer(this.vehicleService.getVehicles()));
 		vehiclesView.setColumnHeader("dailyPrice.value", "Daily Price");
+		vehiclesView.setColumnHeader("manufacturer", "Manufacturer");
+		vehiclesView.setColumnHeader("type", "Type");
+		vehiclesView.setColumnHeader("vehicleState", "State");
+		vehiclesView.setColumnHeader("numberPlate", "Numberplate");
 		hideUnnecessaryColumnsInTable();
 	}
 

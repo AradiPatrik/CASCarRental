@@ -1,11 +1,15 @@
 package de.cas.vaadin.carrental.view.customers;
 
+import com.vaadin.data.Container;
 import com.vaadin.navigator.View;
 
 public interface CustomersView extends View {
-	public interface CustomersViewListener {
+	interface CustomersViewListener {
 		
 	}
 	
-	public void addListener(CustomersViewListener listener);
+	void addListener(CustomersViewListener listener);
+	void attachCustomerData(Container container);
+	void setColumnHeader(String propertyName, String headerName);
+	void setVisibleColumns(Object... propertyName);
 }
